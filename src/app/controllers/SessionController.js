@@ -7,7 +7,7 @@ class SessionController {
   async store(request, response) {
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
-      password: Yup.string().min(9).required(),
+      password: Yup.string().min(6).required(),
     })
 
     const emailOrPasswordIncorrect = () => {
