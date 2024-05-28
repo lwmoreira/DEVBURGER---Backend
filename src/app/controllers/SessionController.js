@@ -13,12 +13,12 @@ class SessionController {
     const emailOrPasswordIncorrect = () => {
       return response
         .status(401)
-        .json({ error: 'Make sure your email or pa  ssword are correct' })
+        .json({ error: 'Make sure your email or password are correct' })
     }
 
     const { email, password } = request.body
 
-    if (!(await schema.isValid(request.body))) return emailOrPasswordIncorrect
+    if (!(await schema.isValid(request.body))) return emailOrPasswordIncorrect()
 
     const user = await User.findOne({
       where: {
@@ -27,13 +27,13 @@ class SessionController {
     })
 
     if (!user) {
-      emailOrPasswordIncorrect()
+      return emailOrPasswordIncorrect()
     }
 
     const isSamePassword = await user.checkPassword(password)
 
     if (!isSamePassword) {
-      emailOrPasswordIncorrect()
+      return emailOrPasswordIncorrect()
     }
 
     return response.status(201).json({
