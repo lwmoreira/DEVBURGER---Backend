@@ -34,7 +34,7 @@ class ProductController {
       offer,
     })
 
-    return response.status(201).json(product)
+    return response.status(200).json(product)
   }
 
   async update(request, response) {
