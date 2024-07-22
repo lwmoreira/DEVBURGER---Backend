@@ -1,6 +1,10 @@
 import multer from 'multer'
-import { extname, resolve } from 'node:path'
+import { extname, resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { v4 } from 'uuid'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export default {
   storage: multer.diskStorage({
