@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize';
 import mongoose from 'mongoose';
 
-import User from '../app/models/User';
-import Product from '../app/models/Product';
-import Category from '../app/models/Category';
+import User from '../app/models/User.js';
+import Product from '../app/models/Product.js';
+import Category from '../app/models/Category.js';
 
 const models = [User, Product, Category];
 
@@ -37,10 +37,7 @@ class Database {
   mongo() {
     this.mongoConnection = mongoose.connect(
       'mongodb://mongo:pbYoscMDQFkLEthkJPsKknwyUjrdJSXJ@roundhouse.proxy.rlwy.net:24321',
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
+    
     ).then(() => {
       console.log('Conexão com o banco de dados MongoDB estabelecida com sucesso');
     }).catch(err => {
