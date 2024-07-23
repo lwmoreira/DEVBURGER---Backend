@@ -37,7 +37,7 @@ class Database {
   mongo() {
     this.mongoConnection = mongoose.connect(
       'mongodb://mongo:pbYoscMDQFkLEthkJPsKknwyUjrdJSXJ@roundhouse.proxy.rlwy.net:24321',
-    
+     
     ).then(() => {
       console.log('Conexão com o banco de dados MongoDB estabelecida com sucesso');
     }).catch(err => {

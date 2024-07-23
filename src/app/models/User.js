@@ -1,10 +1,8 @@
-// src/models/User.js
-import Sequelize, { Model } from 'sequelize';
-import bcrypt from 'bcrypt';
+import Sequelize, { Model } from 'sequelize'
+import bcrypt from 'bcrypt'
 
 class User extends Model {
   static init(sequelize) {
-    console.log('Inicializando o modelo User com sequelize'); // Log adicionado
     super.init(
       {
         name: Sequelize.STRING,
@@ -15,21 +13,21 @@ class User extends Model {
       },
       {
         sequelize,
-      }
-    );
+      },
+    )
 
     this.addHook('beforeSave', async (user) => {
       if (user.password) {
-        user.password_hash = await bcrypt.hash(user.password, 9);
+        user.password_hash = await bcrypt.hash(user.password, 9)
       }
-    });
+    })
 
-    return this;
+    return this
   }
 
-  checkPassword(password) {
-    return bcrypt.compare(password, this.password_hash);
+  async checkPassword(password) {
+    return bcrypt.compare(password, this.password_hash)
   }
 }
 
-export default User;
+export default User
