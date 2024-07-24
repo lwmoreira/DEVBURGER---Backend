@@ -1,15 +1,19 @@
 import { Router } from 'express'
 import multer from 'multer'
-import multerConfig from './config/multer'
-import authMiddleware from './app/middlewares/auth'
+import multerConfig from '../src/config/multer.js'
+import authMiddleware from '../src/app/middlewares/auth.js'
 
-import UserController from './app/controllers/UserController'
-import SessionController from './app/controllers/SessionController'
-import ProductController from './app/controllers/ProductController'
-import CategoryController from './app/controllers/CategoryController'
-import OrderController from './app/controllers/OrderController'
+import UserController from '../src/app/controllers/UserController.js'
+import SessionController from '../src/app/controllers/SessionController.js'
+import ProductController from '../src/app/controllers/ProductController.js'
+import CategoryController from '../src/app/controllers/CategoryController.js'
+import OrderController from '../src/app/controllers/OrderController.js'
 
 const routes = new Router()
+
+routes.get('/', (req, res) => {
+  return res.json({ message: 'API is running!' })
+})
 
 const upload = multer(multerConfig)
 
