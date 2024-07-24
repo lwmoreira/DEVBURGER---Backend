@@ -1,10 +1,8 @@
 import express from 'express';
 import { resolve } from 'node:path';
 import cors from 'cors';
-
-import routes from './routes';
-import './database';
-
+import routes from '../routes.js'; 
+import '../database/index.js'; 
 const corsOptions = {
   origin: 'https://devburger-frontend.vercel.app',
   credentials: true,
@@ -32,11 +30,11 @@ class App {
 
     this.app.use(
       '/product-file',
-      express.static(resolve(__dirname, '..', 'uploads'))
+      express.static(resolve('uploads'))
     );
     this.app.use(
       '/category-file',
-      express.static(resolve(__dirname, '..', 'uploads'))
+      express.static(resolve('uploads'))
     );
   }
 
