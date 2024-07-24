@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-// import configDatabase from '../config/database'
+import configDatabase from '../config/database'
 import mongoose from 'mongoose'
 
 import User from '../app/models/User'
@@ -16,7 +16,7 @@ class Database {
 
   init() {
     this.connection = new Sequelize(
-      'postgresql://postgres:jzDubJhPOEbfnpbMWOGnrwRkZbxLNASX@viaduct.proxy.rlwy.net:47745/railway',
+      'postgresql://postgres:wGCyOJQsRbAYEitTWsvtFRQypSwuNczw@viaduct.proxy.rlwy.net:42241/railway',
     )
     models
       .map((model) => model.init(this.connection))
@@ -27,7 +27,7 @@ class Database {
 
   mongo() {
     this.mongoConnection = mongoose.connect(
-      'mongodb://mongo:pbYoscMDQFkLEthkJPsKknwyUjrdJSXJ@roundhouse.proxy.rlwy.net:24321',
+      'mongodb://mongo:ASBwauYGDyWHpCtjTZwVzyTUZdcntluq@monorail.proxy.rlwy.net:21780',
     )
   }
 }
