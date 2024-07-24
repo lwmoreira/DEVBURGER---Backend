@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import configDatabase from '../config/database'
+//import configDatabase from '../config/database'
 import mongoose from 'mongoose'
 
 import User from '../app/models/User.js';
