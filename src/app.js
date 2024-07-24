@@ -1,42 +1,44 @@
-import express from 'express'
-import { resolve } from 'node:path'
-import cors from 'cors'
+import express from 'express';
+import { resolve } from 'node:path';
+import cors from 'cors';
 
-import routes from './routes'
+import routes from './routes';
 
-import './database'
+import './database';
 
 const corsOptions = {
-
-  origin: 'https://devburger-frontend.vercel.app',
+  origin: 'https://devburger-frontend.vercel.app/',
   credentials: true,
-  
-}
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200 // Para navegadores mais antigos
+};
 
 class App {
   constructor() {
-    this.app = express()
-    this.app.use(cors(corsOptions))
-
-    this.middlewares()
-    this.routes()
+    this.app = express();
+    this.middlewares();
+    this.routes();
   }
 
   middlewares() {
-    this.app.use(express.json())
+    this.app.use(cors(corsOptions));
+    this.app.options('*', cors(corsOptions)); 
+    
+    this.app.use(express.json());
     this.app.use(
       '/product-file',
-      express.static(resolve(__dirname, '..', 'uploads')),
-    )
+      express.static(resolve(__dirname, '..', 'uploads'))
+    );
     this.app.use(
       '/category-file',
-      express.static(resolve(__dirname, '..', 'uploads')),
-    )
+      express.static(resolve(__dirname, '..', 'uploads'))
+    );
   }
 
   routes() {
-    this.app.use(routes)
+    this.app.use(routes);
   }
 }
 
-export default new App().app
+export default new App().app;
