@@ -1,5 +1,4 @@
-import app from '../src/app/index.js';
-import '../src/database/index.js'; // Adicione esta linha para garantir que o banco de dados é inicializado
+import app from './app/index.js';
 
 const port = process.env.PORT || 3001;
 
