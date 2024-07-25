@@ -1,4 +1,6 @@
-import app from './app/index.js';
+import app from '../src/app/index.js';
+import '../src/database/index.js'; 
+
 
 const port = process.env.PORT || 3001;
 
