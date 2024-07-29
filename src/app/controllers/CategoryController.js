@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import Category from '../models/Category.js';
 import User from '../models/User.js';
+import multer from 'multer'; // Adicione isto se não estiver importado
 
 class CategoryController {
   async store(request, response) {
@@ -20,13 +21,7 @@ class CategoryController {
       return response.status(401).json({ error: 'Unauthorized' });
     }
 
-    // Verifique se request.file está presente antes de acessar request.file.filename
-    let path;
-    if (request.file) {
-      path = request.file.filename;
-    } else {
-      return response.status(400).json({ error: 'File not provided' });
-    }
+    const path = request.file ? request.file.filename : null; // Corrigido
 
     const { name } = request.body;
 
@@ -35,9 +30,11 @@ class CategoryController {
         name,
       },
     });
+
     if (categoryExists) {
       return response.status(400).json({ error: 'Category already exists' });
     }
+
     const { id } = await Category.create({
       name,
       path,
@@ -100,7 +97,7 @@ class CategoryController {
         where: {
           id,
         },
-      },
+      }
     );
 
     return response.status(200).json();

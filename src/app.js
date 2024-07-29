@@ -1,15 +1,15 @@
 import express from 'express';
 import { resolve } from 'node:path';
 import cors from 'cors';
-import routes from './routes.js'; 
-import './database/index.js'; 
+import routes from './routes.js'; // Certifique-se que o caminho está correto
+import './database/index.js'; // Certifique-se que o caminho está correto
 
 const corsOptions = {
   origin: 'https://devburger-frontend.vercel.app',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  optionsSuccessStatus: 200, 
+  optionsSuccessStatus: 200, // Para navegadores mais antigos
 };
 
 class App {
