@@ -1,86 +1,93 @@
-import * as Yup from 'yup'
-import Category from '../models/Category.js'
-import User from '../models/User.js'
+import * as Yup from 'yup';
+import Category from '../models/Category.js';
+import User from '../models/User.js';
 
 class CategoryController {
   async store(request, response) {
     const schema = Yup.object({
       name: Yup.string().required(),
-    })
+    });
 
     try {
-      schema.validateSync(request.body, { abortEarly: false })
+      schema.validateSync(request.body, { abortEarly: false });
     } catch (err) {
-      return response.status(400).json({ error: err.errors })
+      return response.status(400).json({ error: err.errors });
     }
 
-    const { admin: isAdmin } = await User.findByPk(request.userId)
+    const { admin: isAdmin } = await User.findByPk(request.userId);
 
     if (!isAdmin) {
-      return response.status(401).json({ error: 'Unauthorized' })
+      return response.status(401).json({ error: 'Unauthorized' });
     }
 
-    const { filename: path } = request.file
-    const { name } = request.body
+    // Verifique se request.file está presente antes de acessar request.file.filename
+    let path;
+    if (request.file) {
+      path = request.file.filename;
+    } else {
+      return response.status(400).json({ error: 'File not provided' });
+    }
+
+    const { name } = request.body;
 
     const categoryExists = await Category.findOne({
       where: {
         name,
       },
-    })
+    });
     if (categoryExists) {
-      return response.status(400).json({ error: 'Category already exists' })
+      return response.status(400).json({ error: 'Category already exists' });
     }
     const { id } = await Category.create({
       name,
       path,
-    })
+    });
 
-    return response.status(201).json({ id, name })
+    return response.status(201).json({ id, name });
   }
 
   async update(request, response) {
     const schema = Yup.object({
       name: Yup.string(),
-    })
+    });
 
     try {
-      schema.validateSync(request.body, { abortEarly: false })
+      schema.validateSync(request.body, { abortEarly: false });
     } catch (err) {
-      return response.status(400).json({ error: err.errors })
+      return response.status(400).json({ error: err.errors });
     }
 
-    const { admin: isAdmin } = await User.findByPk(request.userId)
+    const { admin: isAdmin } = await User.findByPk(request.userId);
 
     if (!isAdmin) {
-      return response.status(401).json({ error: 'Unauthorized' })
+      return response.status(401).json({ error: 'Unauthorized' });
     }
 
-    const { id } = request.params
+    const { id } = request.params;
 
-    const categoryExists = await Category.findByPk(id)
+    const categoryExists = await Category.findByPk(id);
 
     if (!categoryExists) {
       return response
         .status(400)
-        .json({ message: 'Make sure your category Id is correct' })
+        .json({ message: 'Make sure your category Id is correct' });
     }
 
-    let path
+    let path;
     if (request.file) {
-      path = request.file.filename
+      path = request.file.filename;
     }
 
-    const { name } = request.body
+    const { name } = request.body;
 
     if (name) {
       const categoryNameExists = await Category.findOne({
         where: {
           name,
         },
-      })
+      });
       if (categoryNameExists && categoryNameExists.id !== +id) {
-        return response.status(400).json({ error: 'Category already exists' })
+        return response.status(400).json({ error: 'Category already exists' });
       }
     }
 
@@ -94,15 +101,16 @@ class CategoryController {
           id,
         },
       },
-    )
+    );
 
-    return response.status(200).json()
+    return response.status(200).json();
   }
 
   async index(request, response) {
-    const categories = await Category.findAll()
+    const categories = await Category.findAll();
 
-    return response.json(categories)
+    return response.json(categories);
   }
 }
-export default new CategoryController()
+
+export default new CategoryController();
