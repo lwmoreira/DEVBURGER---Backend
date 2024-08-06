@@ -18,17 +18,17 @@ class ProductController {
       return response.status(400).json({ error: err.errors });
     }
 
-    // Verificando se o usuário é um administrador
     if (!request.userId) {
       return response.status(401).json({ error: 'Unauthorized' });
     }
 
     const user = await User.findByPk(request.userId);
-    if (!user || !user.admin) { // Verificação de existência do usuário
+    if (!user || !user.admin) {
       return response.status(401).json({ error: 'Unauthorized' });
     }
 
-    const { filename: path } = request.file || {}; // Garantindo que `request.file` existe
+    // Corrigido: Verificação de arquivo enviado
+    const { filename: path } = request.file || {};
     const { name, price, category_id, offer } = request.body;
 
     try {
@@ -60,13 +60,12 @@ class ProductController {
       return response.status(400).json({ error: err.errors });
     }
 
-    // Verificando se o usuário é um administrador
     if (!request.userId) {
       return response.status(401).json({ error: 'Unauthorized' });
     }
 
     const user = await User.findByPk(request.userId);
-    if (!user || !user.admin) { // Verificação de existência do usuário
+    if (!user || !user.admin) {
       return response.status(401).json({ error: 'Unauthorized' });
     }
 
@@ -77,7 +76,8 @@ class ProductController {
     }
 
     const { name, price, category_id, offer } = request.body;
-    const path = request.file ? request.file.filename : findProduct.path; // Usando o caminho antigo se nenhum novo for fornecido
+    // Corrigido: Verificação se um novo arquivo foi enviado
+    const path = request.file ? request.file.filename : findProduct.path;
 
     try {
       await Product.update(

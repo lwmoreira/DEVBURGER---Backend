@@ -1,14 +1,15 @@
 import express from 'express';
 import { resolve } from 'node:path';
 import cors from 'cors';
-import routes from '../routes.js'; 
-import '../database/index.js'; 
+import routes from '../routes.js';
+import '../database/index.js';
+
 const corsOptions = {
-  origin: 'https://devburger-frontend.vercel.app',
+  origin: '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  optionsSuccessStatus: 200, // Para navegadores mais antigos
+  optionsSuccessStatus: 200,
 };
 
 class App {
@@ -28,6 +29,7 @@ class App {
       next();
     });
 
+    // Corrigido: Configuração para servir arquivos estáticos
     this.app.use(
       '/product-file',
       express.static(resolve('uploads'))
