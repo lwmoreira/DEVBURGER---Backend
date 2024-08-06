@@ -76,7 +76,7 @@ class ProductController {
     }
 
     const { name, price, category_id, offer } = request.body;
-    // Corrigido: Verificação se um novo arquivo foi enviado
+    
     const path = request.file ? request.file.filename : findProduct.path;
 
     try {

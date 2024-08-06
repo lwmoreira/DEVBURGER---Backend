@@ -29,7 +29,7 @@ class App {
       next();
     });
 
-    // Corrigido: Configuração para servir arquivos estáticos
+    
     this.app.use(
       '/product-file',
       express.static(resolve('uploads'))
