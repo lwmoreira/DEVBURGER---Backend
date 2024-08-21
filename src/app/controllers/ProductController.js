@@ -27,7 +27,7 @@ class ProductController {
       return response.status(401).json({ error: 'Unauthorized' });
     }
 
-    // Corrigido: Verificação de arquivo enviado
+    
     const { filename: path } = request.file || {};
     const { name, price, category_id, offer } = request.body;
 
