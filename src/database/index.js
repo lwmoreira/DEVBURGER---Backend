@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import configDatabase from '../config/database'
+//import configDatabase from '../config/database'
 import mongoose from 'mongoose'
 
 import User from '../app/models/User.js';
@@ -15,10 +15,9 @@ class Database {
   }
 
   init() {
-    this.connection = new Sequelize(
-
-      'postgresql://postgres:wGCyOJQsRbAYEitTWsvtFRQypSwuNczw@viaduct.proxy.rlwy.net:42241/railway',
-    )
+    this.connection = new Sequelize('postgresql://postgres:bXmHRYeXsIIWMBgygqGgooUpOfjeFkKb@junction.proxy.rlwy.net:27592/railway', {
+      
+    });
 
    
     models
@@ -31,7 +30,7 @@ class Database {
   mongo() {
     this.mongoConnection = mongoose.connect(
 
-      'mongodb://mongo:TcsmFuaZSvfYDVTClybETzlSGueInuwN@mongodb.railway.internal:27017',
+      'mongodb://mongo:TxNObRWncNVGhIpJSvpakfoISAlenptf@autorack.proxy.rlwy.net:12747',
     )
 
   }

@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import multer from 'multer';
-import multerConfig from './config/multer.js'; // Corrigido o caminho para multer.js
-import authMiddleware from './app/middlewares/auth.js'; // Corrigido o caminho para auth.js
+import multerConfig from './config/multer.js'; 
+import authMiddleware from './app/middlewares/auth.js';
 
-import UserController from './app/controllers/UserController.js'; // Corrigido o caminho para UserController.js
+import UserController from './app/controllers/UserController.js'; 
 import SessionController from './app/controllers/SessionController.js';
 import ProductController from './app/controllers/ProductController.js';
 import CategoryController from './app/controllers/CategoryController.js';
