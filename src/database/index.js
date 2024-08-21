@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-
+import configDatabase from '../config/database'
 import mongoose from 'mongoose'
 
 import User from '../app/models/User.js';
@@ -31,7 +31,7 @@ class Database {
   mongo() {
     this.mongoConnection = mongoose.connect(
 
-      'mongodb://mongo:TcsmFuaZSvfYDVTClybETzlSGueInuwN@autorack.proxy.rlwy.net:43057',
+      'mongodb://mongo:TcsmFuaZSvfYDVTClybETzlSGueInuwN@mongodb.railway.internal:27017',
     )
 
   }
