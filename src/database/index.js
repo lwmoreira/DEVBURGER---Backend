@@ -31,7 +31,7 @@ class Database {
   mongo() {
     this.mongoConnection = mongoose.connect(
 
-      'mongodb://mongo:TcsmFuaZSvfYDVTClybETzlSGueInuwN@autorack.proxy.rlwy.net:43057',
+      'mongosh "mongodb://mongo:TcsmFuaZSvfYDVTClybETzlSGueInuwN@autorack.proxy.rlwy.net:43057"',
     )
 
   }
