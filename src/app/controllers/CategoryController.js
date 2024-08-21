@@ -21,7 +21,7 @@ class CategoryController {
       return response.status(401).json({ error: 'Unauthorized' });
     }
 
-    const path = request.file ? request.file.filename : null; // Corrigido
+    const path = request.file ? request.file.filename : null; 
 
     const { name } = request.body;
 

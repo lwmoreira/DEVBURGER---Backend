@@ -46,6 +46,7 @@ class OrderController {
         category: product.category.name,
         price: product.price,
         url: product.url,
+        path: product.path,
         quantity: products[productIndex].quantity,
       }
       return newProduct
@@ -66,6 +67,7 @@ class OrderController {
 
   async index(request, response) {
     const orders = await Order.find()
+    console.log(orders)
 
     return response.json(orders)
   }
