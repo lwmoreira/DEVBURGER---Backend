@@ -15,7 +15,7 @@ class Database {
   }
 
   init() {
-    this.connection = new Sequelize('postgresql://postgres:jhNhlwzkBbLvZOYgADswdmZeDCRYkMYS@postgres.railway.internal:5432/railway', {
+    this.connection = new Sequelize('postgresql://postgres:JWmmiyQQCPShqqzHKQsplQnoyGQqiiBo@junction.proxy.rlwy.net:27649/railway', {
       
     });
 
