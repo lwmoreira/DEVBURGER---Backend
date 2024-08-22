@@ -32,11 +32,11 @@ class App {
     
     this.app.use(
       '/product-file',
-      express.static(resolve('uploads'))
+      express.static(resolve('src/uploads'))
     );
     this.app.use(
       '/category-file',
-      express.static(resolve('uploads'))
+      express.static(resolve('src/uploads'))
     );
   }
 

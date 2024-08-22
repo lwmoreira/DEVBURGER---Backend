@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import Category from '../models/Category.js';
 import User from '../models/User.js';
-import multer from 'multer'; // Adicione isto se não estiver importado
+import multer from 'multer'; 
 
 class CategoryController {
   async store(request, response) {
