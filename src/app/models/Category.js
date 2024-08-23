@@ -9,7 +9,7 @@ class Category extends Model {
         url: {
           type: Sequelize.VIRTUAL,
           get() {
-            return `https://devburger-backend-production.up.railway.app/category-file/${this.path}`
+            return `https://devburger-backend-production-8436.up.railway.app//category-file/${this.path}`
           },
         },
       },
